@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 # load_dotenv()
 # Configure Google Gemini
-# genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Set the model and generation config
 generation_config = {
@@ -18,10 +18,10 @@ generation_config = {
     "response_mime_type": "text/plain",
 }
 
-# model = genai.GenerativeModel(
-#     model_name="gemini-1.5-pro",  # You can choose the model variant
-#     generation_config=generation_config,
-# )
+model = genai.GenerativeModel(
+    model_name="gemini-1.5-pro",  # You can choose the model variant
+    generation_config=generation_config,
+)
 
 # Streamlit App Title
 st.set_page_config(page_title="Excel Sheet Query Tool", page_icon=":bar_chart:", layout="centered")
@@ -60,8 +60,8 @@ if uploaded_file is not None:
                             csv_data = df.to_csv(index=False)
                             
                             # Use AI to generate content (mocked for this example)
-                            # response = model.generate_content([question, csv_data])
-                            response = f"Mock response for question: '{question}' based on sheet: '{selected_sheet}'."
+                            response = model.generate_content([question, csv_data])
+                            # response = f"Mock response for question: '{question}' based on sheet: '{selected_sheet}'."
                             
                             st.success("AI Response:")
                             st.write(response)
