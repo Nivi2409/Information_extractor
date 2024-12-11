@@ -4,6 +4,7 @@ from io import BytesIO
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
+from config import GEMINI_API_KEY
 
 
 # load_dotenv()
